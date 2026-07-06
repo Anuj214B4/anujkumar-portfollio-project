@@ -54,8 +54,8 @@ const Hero = () => {
               </a>
 
               <a
-                href="public\ANUJ_KUMAR.pdf"
-                download
+                href="/ANUJ_KUMAR.pdf"
+                download="Anuj_Kumar_Resume.pdf"
                 className="border border-sky-500 px-6 py-3 rounded-xl hover:bg-sky-500 transition"
               >
                 Download Resume
