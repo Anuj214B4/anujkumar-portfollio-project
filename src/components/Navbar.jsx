@@ -3,22 +3,15 @@ import { HiMenuAlt3, HiX } from "react-icons/hi";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const navLinks = [
-  { name: "Home", href: "#hero" },
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
-  { name: "Education", href: "#education" },
-  { name: "Contact", href: "#contact" },
+  { id: 1, name: "Home", section: "hero" },
+  { id: 2, name: "About", section: "about" },
+  { id: 3, name: "Skills", section: "skills" },
+  { id: 4, name: "Projects", section: "projects" },
+  { id: 5, name: "Education", section: "education" },
+  { id: 6, name: "Contact", section: "contact" },
 ];
 
-const sections = [
-  "hero",
-  "about",
-  "skills",
-  "projects",
-  "education",
-  "contact",
-];
+const sections = navLinks.map((item) => item.section);
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -46,7 +39,8 @@ const Navbar = () => {
         });
       },
       {
-        threshold: 0.5,
+        rootMargin: "-100px 0px -50% 0px",
+        threshold: 0,
       },
     );
 
@@ -61,9 +55,17 @@ const Navbar = () => {
   const handleScroll = (id) => {
     setOpen(false);
 
-    document.getElementById(id)?.scrollIntoView({
-      behavior: "smooth",
-    });
+    const element = document.getElementById(id);
+
+    if (element) {
+      const offset = 80; // Navbar height
+      const top = element.getBoundingClientRect().top + window.scrollY - offset;
+
+      window.scrollTo({
+        top,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
@@ -88,10 +90,10 @@ const Navbar = () => {
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((item) => (
             <button
-              key={item.name}
-              onClick={() => handleScroll(item.href.substring(1))}
+              key={item.id}
+              onClick={() => handleScroll(item.section)}
               className={`relative pb-1 transition-all duration-300 ${
-                activeSection === item.href.substring(1)
+                activeSection === item.section
                   ? "text-sky-400"
                   : "text-slate-300 hover:text-sky-400"
               }`}
@@ -99,8 +101,8 @@ const Navbar = () => {
               {item.name}
 
               <span
-                className={`absolute left-0 bottom-0 h-[2] bg-sky-400 transition-all duration-300 ${
-                  activeSection === item.href.substring(1) ? "w-full" : "w-0"
+                className={`absolute left-0 bottom-0 h-[2px] bg-sky-400 transition-all duration-300 ${
+                  activeSection === item.section ? "w-full" : "w-0"
                 }`}
               />
             </button>
@@ -122,10 +124,10 @@ const Navbar = () => {
         <nav className="flex flex-col py-4">
           {navLinks.map((item) => (
             <button
-              key={item.name}
-              onClick={() => handleScroll(item.href.substring(1))}
+              key={item.id}
+              onClick={() => handleScroll(item.section)}
               className={`text-left px-6 py-3 transition ${
-                activeSection === item.href.substring(1)
+                activeSection === item.section
                   ? "text-sky-400 bg-slate-800"
                   : "hover:bg-slate-800"
               }`}
