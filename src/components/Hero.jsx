@@ -93,7 +93,7 @@ const Hero = () => {
               <div className="w-80 h-80 rounded-full bg-sky-500 blur-3xl opacity-20 absolute"></div>
 
               <img
-                src="src\assets\images\profile.png"
+                src="/profile.png"
                 alt="Anuj Kumar"
                 className="relative w-80 h-80 object-fill rounded-full border-4 border-sky-500 shadow-2xl"
               />
