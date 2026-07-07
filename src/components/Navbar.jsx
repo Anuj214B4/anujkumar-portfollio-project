@@ -153,16 +153,6 @@ const Navbar = () => {
               <FaLinkedin />
             </a>
           </div>
-
-          <div className="px-6">
-            <a
-              href="/ANUJ_KUMAR.pdf"
-              download
-              className="block text-center bg-sky-500 hover:bg-sky-600 rounded-lg py-3 transition"
-            >
-              Download Resume
-            </a>
-          </div>
         </nav>
       </div>
     </header>
